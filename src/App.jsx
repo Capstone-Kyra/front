@@ -1,32 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import { getAllTrips } from './components/AllTrips';
+import AllTrips from './components/AllTrips';
+import { getAllTrips } from './api-adapters';
 
 function App() {
-  const [allTrips, getAllTrips] = useState([]);
+  const [allTripsData, setAllTripsData] = useState([]);
 
   useEffect (() => {
-    async function getAllTrips() {
+    async function fetchAllTrips() {
+      console.log('running fetch alltrips function')
       try {
-        let response = await AllTrips();
-        setAllTrips(reponse.posts)
+        const BASE_URL = `http://localhost:3000`;
+        const response = await fetch(`${BASE_URL}/api/trips`);
+        console.log('response' + response);
+        const translatedData = await response.json();
+        console.log(translatedData);
+        setAllTripsData(translatedData)
       } catch(error) {
         console.log(error);
       }
     }
-    getAllTrips();
+    fetchAllTrips();
   }, [])
-
+  console.log(allTripsData);
   return (
     <>
       <h1>Home Page</h1>
 
       <Routes>
-        <Route path='/' element = {<AllTrips allTrips={allTrips} />} />
+        <Route path='/' element = {<AllTrips allTripsData={allTripsData} />} />
       </Routes>
     </>
   )
 }
 
-export default App
+export default App;
