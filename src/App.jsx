@@ -3,6 +3,8 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import AllTrips from './components/AllTrips';
 import { getAllTrips } from './api-adapters';
+import Register from './components/Register';
+import Login from './components/Login';
 
 function App() {
   const [allTripsData, setAllTripsData] = useState([]);
@@ -30,6 +32,8 @@ function App() {
 
       <Routes>
         <Route path='/' element = {<AllTrips allTripsData={allTripsData} />} />
+        <Route path='/register' element = {<Register />} />
+        <Route path='/login' element = {<Login />} />
       </Routes>
     </>
   )

@@ -12,3 +12,49 @@ export const getAllTrips = async() => {
         console.log(error);
     }
 }   
+
+export async function registerUser(username, password){
+    try{
+        let response = await fetch(`${BASE_URL}/users/register`,{
+            method:"POST",
+            headers:{
+                'content-type': "application/json",},
+                body: JSON.stringify({
+                    user:{
+                        username: username,
+                        password: password,
+                    },
+                    }),
+                })
+            
+        const translatedData = await response.json();
+        console.log(translatedData)
+        return translatedData
+    }catch(error){
+        console.error(error);
+    }
+
+};
+
+export async function loginUser(username, password){
+    try{
+        let response = await fetch(`${BASE_URL}/users/login`,{
+            method:"POST",
+            headers:{
+                'content-type': "application/json",
+            },
+                body: JSON.stringify({
+                    user: {
+                        username: username,
+                        password: password,
+                    },
+                    }),
+                })
+            const result = await response.json();
+            console.log(result)
+        return result
+    }catch(error){
+        console.error(error);
+    }
+
+};
