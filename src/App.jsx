@@ -7,6 +7,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import NavBar from './components/NavBar';
+import SingleTrip from './components/SingleTrip';
 
 function App() {
   const [allTripsData, setAllTripsData] = useState([]);
@@ -30,11 +31,11 @@ function App() {
   // console.log(allTripsData);
   return (
     <>
-    <NavBar />
-      {/* <h1></h1> */}
-
+      <h1>Trip Advisor</h1>
+      <NavBar />
       <Routes>
         <Route path='/' element = {<AllTrips allTripsData={allTripsData} />} />
+        <Route path='/:id' element = {<SingleTrip allTripsData={allTripsData} />} />
         <Route path='/register' element = {<Register />} />
         <Route path='/login' element = {<Login />} />
         <Route path='/profile' element = {<Profile />} />
