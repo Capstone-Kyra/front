@@ -1,18 +1,20 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate} from 'react-router-dom';
-import { registerUser } from "../api-fetch";
+import { registerUser } from "../api-adapters";
+
 export default function Register(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
     const navigate = useNavigate();
 
     async function handleClick(event){
         event.preventDefault();
         try{
-           const result = await registerUser(username,password)
+           const result = await registerUser(username,password,email)
            console.log(result)
-           localStorage.setItem('token', result.data.token)
+           localStorage.setItem('token', result.token)
 
            navigate('/')
         }catch(error){
@@ -21,9 +23,9 @@ export default function Register(){
     }
     return(
         <div>
-            <h2 id="register">Register</h2>
+             <h2 id="register">Register below.</h2>
 <form onSubmit={handleClick}>
-    <label>Username: <input 
+    <label>UserName: <input 
     type="text"
     value={username}
     onChange = {(event) => {
@@ -37,6 +39,16 @@ export default function Register(){
             value={password}
             onChange={(event) => {
               setPassword(event.target.value);
+            }}
+          />
+        </label>
+        <label>
+        Email:
+          <input
+            type="email"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
             }}
           />
         </label>

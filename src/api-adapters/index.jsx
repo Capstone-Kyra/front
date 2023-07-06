@@ -1,4 +1,4 @@
-const BASE_URL = `localhost:3000`;
+const BASE_URL = `http://localhost:3000`;
 
 export const getAllTrips = async() => {
     console.log("getalltrips running");
@@ -13,21 +13,25 @@ export const getAllTrips = async() => {
     }
 }   
 
-export async function registerUser(username, password){
+export async function registerUser(username, password, email){
     try{
-        let response = await fetch(`${BASE_URL}/users/register`,{
+        // console.log(1)
+        let response = await fetch(`${BASE_URL}/api/users/register`,{
             method:"POST",
             headers:{
-                'content-type': "application/json",},
+                'Content-Type': "application/json"},
                 body: JSON.stringify({
-                    user:{
                         username: username,
                         password: password,
-                    },
+                        email: email,
+                    
                     }),
                 })
-            
+        // const response = await fetch(`${BASE_URL}/trips`);
+        // console.log(response)
+        //     console.log(2)
         const translatedData = await response.json();
+        // console.log(3)
         console.log(translatedData)
         return translatedData
     }catch(error){
@@ -38,16 +42,15 @@ export async function registerUser(username, password){
 
 export async function loginUser(username, password){
     try{
-        let response = await fetch(`${BASE_URL}/users/login`,{
+        let response = await fetch(`${BASE_URL}/api/users/login`,{
             method:"POST",
             headers:{
-                'content-type': "application/json",
+                'Content-Type': "application/json",
             },
                 body: JSON.stringify({
-                    user: {
                         username: username,
                         password: password,
-                    },
+
                     }),
                 })
             const result = await response.json();

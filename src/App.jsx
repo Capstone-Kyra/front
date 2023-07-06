@@ -5,6 +5,8 @@ import AllTrips from './components/AllTrips';
 import { getAllTrips } from './api-adapters';
 import Register from './components/Register';
 import Login from './components/Login';
+import Profile from './components/Profile';
+import NavBar from './components/NavBar';
 
 function App() {
   const [allTripsData, setAllTripsData] = useState([]);
@@ -15,9 +17,9 @@ function App() {
       try {
         const BASE_URL = `http://localhost:3000`;
         const response = await fetch(`${BASE_URL}/api/trips`);
-        console.log('response' + response);
+        // console.log('response' + response);
         const translatedData = await response.json();
-        console.log(translatedData);
+        // console.log(translatedData);
         setAllTripsData(translatedData)
       } catch(error) {
         console.log(error);
@@ -25,15 +27,17 @@ function App() {
     }
     fetchAllTrips();
   }, [])
-  console.log(allTripsData);
+  // console.log(allTripsData);
   return (
     <>
-      <h1>Home Page</h1>
+    <NavBar />
+      {/* <h1></h1> */}
 
       <Routes>
         <Route path='/' element = {<AllTrips allTripsData={allTripsData} />} />
         <Route path='/register' element = {<Register />} />
         <Route path='/login' element = {<Login />} />
+        <Route path='/profile' element = {<Profile />} />
       </Routes>
     </>
   )
