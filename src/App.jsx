@@ -6,6 +6,7 @@ import { getAllTrips } from './api-adapters';
 import Register from './components/Register';
 import Login from './components/Login';
 import NavBar from './components/NavBar';
+import SingleTrip from './components/SingleTrip';
 
 function App() {
   const [allTripsData, setAllTripsData] = useState([]);
@@ -33,6 +34,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path='/' element = {<AllTrips allTripsData={allTripsData} />} />
+        <Route path='/:id' element = {<SingleTrip allTripsData={allTripsData} />} />
         <Route path='/register' element = {<Register />} />
         <Route path='/login' element = {<Login />} />
         
