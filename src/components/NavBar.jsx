@@ -1,9 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
-export default function NavBar() {
-    return ( 
-        <div>
-            <h2>Nav</h2>
-        </div>
+export default function NavBar (){
+    return(
+<div>
+<Link to="/">Home  </Link>
+<Link to= '/register'>Register  </Link>
+<Link to='/login'>Login</Link>
+{/* <Link to='/search'>Search</Link> */}
+
+</div>
+    
     )
 }

@@ -5,6 +5,7 @@ import AllTrips from './components/AllTrips';
 import { getAllTrips } from './api-adapters';
 import Register from './components/Register';
 import Login from './components/Login';
+import Profile from './components/Profile';
 import NavBar from './components/NavBar';
 import SingleTrip from './components/SingleTrip';
 
@@ -37,7 +38,7 @@ function App() {
         <Route path='/:id' element = {<SingleTrip allTripsData={allTripsData} />} />
         <Route path='/register' element = {<Register />} />
         <Route path='/login' element = {<Login />} />
-        
+        <Route path='/profile' element = {<Profile />} />
       </Routes>
     </>
   )

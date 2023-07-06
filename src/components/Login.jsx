@@ -1,7 +1,8 @@
-import { loginUser } from '../api-adapters';
+import { loginUser } from "../api-adapters";
 import { useState } from "react";
 import { useNavigate} from 'react-router-dom';
 import { Link } from "react-router-dom";
+
 
 
  function Login(){
@@ -16,17 +17,17 @@ import { Link } from "react-router-dom";
             const result = await loginUser(username, password)
             console.log(result)
 
-            localStorage.setItem('token', result.data.token)
+            localStorage.setItem('token', result.token)
             
             // takes me to location after logging in
-            navigate('/')
+            navigate('/Profile')
         } catch (error){
             console.error(error)
         }
 
         }
          return(<div>
-            <h2>Login</h2>
+            <h2>Login below.</h2>
             <form onSubmit={handleClick}>
                 <label>Username:
                     <input
