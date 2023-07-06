@@ -1,16 +1,30 @@
-import { useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams } from "react-router-dom"
 
-function SingleTrip(props) {
-    console.log('single trip props: ' + props);
-    //location, type, description
-    <form className='single-trip-card'>
-        <h2>ID: {props.id}</h2>
-        <h2>Location: {props.location}</h2>
-        <h2>Type: {props.type}</h2>
-        <h2>Description: {props.description}</h2>
-    </form>
+
+export default function SingleTrip (props){
+  
+    const { id } = useParams();
+    const filteredTrip = props.allTripsData.filter((singleTrip) => {
+        console.log( singleTrip.location)
+        if(singleTrip.id == id ){
+            console.log(singleTrip.location)
+            return singleTrip.location
+        }
+    })
+    return(
+        <div>
+         
+           { filteredTrip[0] && filteredTrip[0].location ? 
+           
+           <>
+           <p> {filteredTrip[0].location}</p>
+           <p> {filteredTrip[0].description}</p> 
+           <p> {filteredTrip[0].type}</p> 
+           </> : null }
+
+           
+</div>
+   
+    )
+    
 }
-
-
-export default SingleTrip;
