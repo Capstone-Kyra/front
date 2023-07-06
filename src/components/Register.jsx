@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate} from 'react-router-dom';
-import { registerUser } from "../api-fetch";
+import { registerUser } from '../api-adapters';
+
 export default function Register(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
 function SingleTrip(props) {
-    console.log(props);
+    console.log('single trip props: ' + props);
     //location, type, description
     <form className='single-trip-card'>
         <h2>ID: {props.id}</h2>
