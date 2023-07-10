@@ -6,9 +6,11 @@ const BASE_URL = `http://localhost:3000`;
 function SearchBar(props) {
   const [searchQuery, setSearchQuery] = useState("");
   let filteredtrips = props.allTripsData.filter((trip)=>{
+    console.log('this is the trip')
     console.log(trip)
-    let lowercasedName = trip.title.toLowerCase();
+    let lowercasedName = trip.location.toLowerCase();
     let lowercasedQuery = searchQuery.toLowerCase();
+    console.log('these are the props alltrips')
 
     if (lowercasedName.includes(lowercasedQuery)) {
       return trip;
