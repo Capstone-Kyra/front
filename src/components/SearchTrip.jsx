@@ -7,10 +7,10 @@ export default function SearchTrip(props){
     return(
         <div>
            <h2 id="searchTrip">Trip:</h2>
-           {props.trip && props.trip.title ? 
+           {props.trip && props.trip.location ? 
            
            
-           <p id="searchSingle"> {props.trip.title}</p> : null }
+           <p id="searchSingle"> {props.trip.location}</p> : null }
 
 </div>
    
