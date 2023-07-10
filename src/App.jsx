@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import NavBar from './components/NavBar';
 import SingleTrip from './components/SingleTrip';
+import SearchBar from './components/SearchBar';
 
 function App() {
   const [allTripsData, setAllTripsData] = useState([]);
@@ -39,6 +40,7 @@ function App() {
         <Route path='/register' element = {<Register />} />
         <Route path='/login' element = {<Login />} />
         <Route path='/profile' element = {<Profile />} />
+        <Route path='/searchbar' element = {<SearchBar allTripsData = {allTripsData} />} />
       </Routes>
     </>
   )
