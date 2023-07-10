@@ -1,43 +1,46 @@
-import { useState } from 'react';
+import { useState, useEffect } from "react";
+import SearchTrip from "./SearchTrip";
+
+const BASE_URL = `http://localhost:3000`;
 
 function SearchBar(props) {
-    const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  let filteredtrips = props.allTripsData.filter((trip)=>{
+    console.log(trip)
+    let lowercasedName = trip.title.toLowerCase();
+    let lowercasedQuery = searchQuery.toLowerCase();
 
-    filteredPlans = allTrips.filter((singleTrip) => {
-        let lowercasedName = singleTrip.name.toLowerCase();
-        let lowercasedQuery = searchQuery.toLowerCase();
-
-        if(lowercasedName.includes(lowercasedQuery)) {
-            return singleTrip;
-        }
-    })
-
-    return(
-        <div>
-            <form>
-                <label htmlFor="search-query">Search</label>
-                <input 
-                    name="search-query"
-                    type="text" 
-                    placeholder="search"
-                    value={searchQuery}
-                    onChange={(search) => {
-                        setSearchQuery(search.target.value);
-                    }}
-                ></input>
-            </form>
-            {
-                filteredPlans.length ? filteredPlans.map((singleTrip, index) => {
-                    return(
-                        <div key={index}>
-                            <h2>Trip: {singleTrip.name}</h2>
-                            <p>Description: {singleTrip.description}</p>
-                        </div>
-                    )
-                }) : <p>loading</p>
-            }
-        </div>
-    )
+    if (lowercasedName.includes(lowercasedQuery)) {
+      return trip;
+    }
+  });
+  return (
+    <div id="container">
+      <form>
+        <label className="search-products" htmlFor="search-query">
+          Search Trips:{" "}
+        </label>
+        <input
+          name="search-query"
+          type="text"
+          placeholder="Search..."
+          value={searchQuery}
+          onChange={(search) => {
+            setSearchQuery(search.target.value);
+          }}
+        ></input>
+      </form>
+      <div>
+        {filteredtrips.length ? (
+          filteredtrips.map((trip, idx) => {
+            return <SearchTrip key={idx} trip={trip} allTripsData={props.allTripsData} />;
+          })
+        ) : (
+          <p>This trip doesn't exist..</p>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default SearchBar;
