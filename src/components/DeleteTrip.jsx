@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 function DeleteTrip(props) {
     const BASE_URL = `http://localhost:3000`;
     const TOKEN_STRING = localStorage.getItem("token");
-    console.log(id);
+    // console.log(id);
     const navigate = useNavigate();
     //do i need prevent default?
     async function sendDeleteRequest(event) {
