@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { getAllTrips } from '../api-adapters';
 import { Link } from 'react-router-dom';
+import DeleteTrip from './DeleteTrip';
 
 export default function AllTrips(props) {  
     // console.log('alltrips props');
@@ -15,6 +16,7 @@ export default function AllTrips(props) {
                         <h4>Location: {singleTrip.location}</h4>
                         <h4>Type: {singleTrip.type}</h4>
                         <p>Description: {singleTrip.description}</p>
+                        <DeleteTrip />
                         {/* <Link to={`/${singleTrip.id}`}>Link</Link> */}
                     </div>
                 )

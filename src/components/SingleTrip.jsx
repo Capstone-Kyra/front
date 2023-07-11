@@ -1,8 +1,7 @@
 import { useParams } from "react-router-dom"
-
+import DeleteTrip from "./DeleteTrip";
 
 export default function SingleTrip (props){
-  
     const { id } = useParams();
     const filteredTrip = props.allTripsData.filter((singleTrip) => {
         console.log( singleTrip.location)
@@ -23,7 +22,7 @@ export default function SingleTrip (props){
            </> : null }
 
            
-</div>
+        </div>
    
     )
     
