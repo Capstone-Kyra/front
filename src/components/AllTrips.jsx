@@ -17,7 +17,7 @@ export default function AllTrips(props) {
                         <h4>Type: {singleTrip.type}</h4>
                         <p>Description: {singleTrip.description}</p>
                         <DeleteTrip />
-                        {/* <Link to={`/${singleTrip.id}`}>Link</Link> */}
+                        <Link to ={`${singleTrip.id}`}><button>See Details</button></Link> 
                     </div>
                 )
             }) : <p>Loading trips</p>
@@ -25,4 +25,3 @@ export default function AllTrips(props) {
         </div>
     )
 }
-
