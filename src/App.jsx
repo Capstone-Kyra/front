@@ -9,6 +9,8 @@ import Profile from './components/Profile';
 import NavBar from './components/NavBar';
 import SingleTrip from './components/SingleTrip';
 import SearchBar from './components/SearchBar';
+import AdminDashboard from './components/AdminDashboard/AdminDashboard';
+import FetchComments from './components/Comments/FetchComments';
 
 function App() {
   const [allTripsData, setAllTripsData] = useState([]);
@@ -41,6 +43,8 @@ function App() {
         <Route path='/login' element = {<Login />} />
         <Route path='/profile' element = {<Profile />} />
         <Route path='/searchbar' element = {<SearchBar allTripsData = {allTripsData} />} />
+        <Route path='/admin-dashboard' element={<AdminDashboard />} />
+        <Route path='/' element= {<FetchComments/>} />
       </Routes>
     </>
   )

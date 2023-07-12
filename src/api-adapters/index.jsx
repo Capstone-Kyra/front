@@ -1,4 +1,5 @@
 const BASE_URL = `http://localhost:3000`;
+export const BASE_COMMENTS_URL= 'http://localhost:3000/comments'
 
 export const getAllTrips = async() => {
     console.log("getalltrips running");
