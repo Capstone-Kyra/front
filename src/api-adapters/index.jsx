@@ -41,24 +41,24 @@ export async function registerUser(username, password, email){
 
 };
 
-export async function loginUser(username, password){
-    try{
-        let response = await fetch(`${BASE_URL}/api/users/login`,{
-            method:"POST",
-            headers:{
-                'Content-Type': "application/json",
-            },
-                body: JSON.stringify({
-                        username: username,
-                        password: password,
+// export async function loginUser(username, password){
+//     try{
+//         let response = await fetch(`${BASE_URL}/api/users/login`,{
+//             method:"POST",
+//             headers:{
+//                 'Content-Type': "application/json",
+//             },
+//                 body: JSON.stringify({
+//                         username: username,
+//                         password: password,
 
-                    }),
-                })
-            const result = await response.json();
-            console.log(result)
-        return result
-    }catch(error){
-        console.error(error);
-    }
+//                     }),
+//                 })
+//             const result = await response.json();
+//             console.log(result)
+//         return result
+//     }catch(error){
+//         console.error(error);
+//     }
 
-};
+// };
