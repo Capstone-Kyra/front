@@ -11,6 +11,7 @@ import SingleTrip from './components/SingleTrip';
 import SearchBar from './components/SearchBar';
 import jwtDecode from 'jwt-decode';
 import Homepage from './components/HomePage';
+import NewTrip from './components/NewTrip';
 //  import AdminDashboard from './components/AdminDashboard';
 
 function App() {
@@ -51,10 +52,11 @@ console.log(allTripsData);
   
   return (
     <>
-      <h1>Trip Advisor</h1>
+      <h1>Adventure Time</h1>
       <nav>
-      <Link to='/'>Home</Link>
-      <Link to='/searchbar'>Search</Link>
+      <Link to='/'>Home </Link>
+      <Link to='/searchbar'>Search </Link>
+      <Link to ='/newTrip'>Create a new trip </Link>
         
         {
           userInfo ? "" : <Link to="/login">Login</Link>
@@ -73,6 +75,7 @@ console.log(allTripsData);
         <Route path='/' element = {<Homepage/>} />
         <Route path='/trips' element = {<AllTrips allTripsData={allTripsData} />} />
         <Route path='/trips/:id' element = {<SingleTrip allTripsData={allTripsData} />} />
+        <Route path='/newTrip' element = { <NewTrip />} />
         <Route path='/register' element = {<Register />} />
         {/* <Route path='/login' element = {<Login />} /> */}
         <Route path='/login' element={<Login setUserInfo={setUserInfo}/>} />
