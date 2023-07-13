@@ -7,16 +7,26 @@ export default function Register(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     async function handleClick(event){
         event.preventDefault();
         try{
            const result = await registerUser(username,password,email)
-           console.log(result)
-           localStorage.setItem('token', result.token)
+           console.log(result, "***")
+           if(result.error){
+            setError(result.message)
+           }
+           
+           if(result.token){
+            localStorage.setItem('token', result.token)
+            setError(null);
+            navigate('/login')
+           }
+          
 
-           navigate('/login')
+           
         }catch(error){
             console.error(error)
         }
@@ -54,6 +64,10 @@ export default function Register(){
         </label>
         <button type='submit'>Submit</button>
 </form>
+{
+error ? <p>{error}</p>: null
+
+}
 </div>
     )
 }

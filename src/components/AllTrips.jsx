@@ -11,11 +11,11 @@ export default function AllTrips(props) {
                 console.log('single trip:')
                 console.log(singleTrip)
                 return(
-                    <div key={singleTrip.id}>
+                    <div key={singleTrip.tripId}>
                         <h4>Location: {singleTrip.location}</h4>
                         <h4>Type: {singleTrip.type}</h4>
                         <p>Description: {singleTrip.description}</p>
-                        <Link to ={`${singleTrip.id}`}><button>See Details</button></Link> 
+                        <Link to ={`/trips/${singleTrip.tripId}`}><button>See Details</button></Link> 
                     </div>
                 )
             }) : <p>Loading trips</p>
