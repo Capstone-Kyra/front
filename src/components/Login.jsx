@@ -25,7 +25,7 @@ const Login = (props) => {
             const translatedData = await response.json(); 
 
             if (translatedData.data) {
-            
+            console.log(translatedData.data)
                 localStorage.setItem("token", translatedData.data)
 
                 const decodedToken = await jwtDecode(translatedData.data);

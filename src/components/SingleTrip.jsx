@@ -6,22 +6,23 @@ export default function SingleTrip (props){
   
     const { id } = useParams();
     const navigate = useNavigate();
-    const filteredTrip = props.allTripsData.filter((singleTrip) => {
+    const filteredTrip = props.allTripsData.find((singleTrip) => {
         console.log( singleTrip.location)
-        if(singleTrip.id == id ){
+        if(singleTrip.tripId == id ){
             console.log(singleTrip.location)
-            return singleTrip.location
+            return true
         }
     })
+    // console.log(filteredTrip)
     return(
         <div>
          
-           { filteredTrip[0] && filteredTrip[0].location ? 
+           { filteredTrip && filteredTrip.location ? 
            
            <>
-           <p> {filteredTrip[0].location}</p>
-           <p> {filteredTrip[0].description}</p> 
-           <p> {filteredTrip[0].type}</p> 
+           <p> {filteredTrip.location}</p>
+           <p> {filteredTrip.description}</p> 
+           <p> {filteredTrip.type}</p> 
            </> : null }
            <button onClick={() => navigate('/')}> Back </button>
 

@@ -10,7 +10,8 @@ import Profile from './components/Profile';
 import SingleTrip from './components/SingleTrip';
 import SearchBar from './components/SearchBar';
 import jwtDecode from 'jwt-decode';
-// import AdminDashboard from './components/AdminDashboard';
+import Homepage from './components/HomePage';
+//  import AdminDashboard from './components/AdminDashboard';
 
 function App() {
   const [allTripsData, setAllTripsData] = useState([]);
@@ -30,16 +31,20 @@ function App() {
         console.log(error);
       }
     }
-    fetchAllTrips();
+     fetchAllTrips();
   }, [])
 console.log(allTripsData);
 
   useEffect(() => {
+    const token = localStorage.getItem("token")
+    console.log(token, typeof token)
     if (localStorage.getItem("token")) {
+      console.log('hello')
       let decodedToken = jwtDecode(localStorage.getItem("token"));
+      console.log('decoded token', decodedToken)
       setUserInfo({
         username: decodedToken.username,
-        admin: decodedToken.admin
+        admin: decodedToken.is_Admin
       })
     }
   }, [])
@@ -65,8 +70,9 @@ console.log(allTripsData);
       {/* <NavBar />  */}
       </nav>
       <Routes>
-        <Route path='/' element = {<AllTrips allTripsData={allTripsData} />} />
-        <Route path='/:id' element = {<SingleTrip allTripsData={allTripsData} />} />
+        <Route path='/' element = {<Homepage/>} />
+        <Route path='/trips' element = {<AllTrips allTripsData={allTripsData} />} />
+        <Route path='/trips/:id' element = {<SingleTrip allTripsData={allTripsData} />} />
         <Route path='/register' element = {<Register />} />
         {/* <Route path='/login' element = {<Login />} /> */}
         <Route path='/login' element={<Login setUserInfo={setUserInfo}/>} />
