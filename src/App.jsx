@@ -10,7 +10,7 @@ import Profile from './components/Profile';
 import SingleTrip from './components/SingleTrip';
 import SearchBar from './components/SearchBar';
 import jwtDecode from 'jwt-decode';
-import AdminDashboard from './components/AdminDashboard';
+import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 
 function App() {
   const [allTripsData, setAllTripsData] = useState([]);
@@ -74,7 +74,7 @@ console.log(allTripsData);
         <Route path='/profile' element = {<Profile />} />
         <Route path='/searchbar' element = {<SearchBar allTripsData = {allTripsData} />} />
         <Route path='/admin-dashboard' element={<AdminDashboard />} />
-        <Route path='/' element= {<FetchComments/>} />
+        {/* <Route path='/' element= {<FetchComments/>} /> */}
       </Routes>
     </>
   )
