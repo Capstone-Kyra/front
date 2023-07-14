@@ -7,6 +7,7 @@ export default function AllTrips(props) {
     console.log(props);  
     return(
         <div>
+            <h3>Click the link above to create your own trip listing!</h3>
             {props.allTripsData.length ? props.allTripsData.map((singleTrip) => {
                 console.log('single trip:')
                 console.log(singleTrip)
