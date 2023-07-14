@@ -12,7 +12,7 @@ import SearchBar from './components/SearchBar';
 import jwtDecode from 'jwt-decode';
 import Homepage from './components/HomePage';
 import NewTrip from './components/NewTrip';
-//  import AdminDashboard from './components/AdminDashboard';
+import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 
 function App() {
   const [allTripsData, setAllTripsData] = useState([]);
@@ -79,7 +79,7 @@ console.log(allTripsData);
         <Route path='/register' element = {<Register />} />
         {/* <Route path='/login' element = {<Login />} /> */}
         <Route path='/login' element={<Login setUserInfo={setUserInfo}/>} />
-        {/* <Route path='/admin-dashboard' element={<AdminDashboard />} /> */}
+        <Route path='/admin-dashboard' element={<AdminDashboard />} />
         <Route path='/profile' element = {<Profile />} />
         <Route path='/searchbar' element = {<SearchBar allTripsData = {allTripsData} />} />
       </Routes>
