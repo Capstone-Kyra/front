@@ -55,8 +55,9 @@ console.log(allTripsData);
       <h1>Adventure Time</h1>
       <nav>
       <Link to='/'>Home </Link>
-      <Link to='/searchbar'>Search </Link>
+      {/* <Link to='/searchbar'>Search </Link> */}
       <Link to ='/newTrip'>Create a new trip </Link>
+      <Link to = '/trips'>See a list of Trips</Link>
         
         {
           userInfo ? "" : <Link to="/login">Login</Link>
@@ -67,22 +68,21 @@ console.log(allTripsData);
         }
 
         {
-          userInfo && !userInfo.admin ? <Link to="/profile">Profile</Link> : ""
+          userInfo && !userInfo.admin ? <Link to="/profile"> Profile</Link> : ""
         }
       {/* <NavBar />  */}
       </nav>
       <Routes>
-        <Route path='/' element = {<Homepage/>} />
+        <Route path='/' element = {<Homepage allTripsData={allTripsData}/>} />
         <Route path='/trips' element = {<AllTrips allTripsData={allTripsData} />} />
         <Route path='/trips/:id' element = {<SingleTrip allTripsData={allTripsData} />} />
-        <Route path='/newTrip' element = { <NewTrip />} />
+        <Route path='/newTrip' element = { <NewTrip allTripsData = {allTripsData} setAllTripsData = {setAllTripsData}/>} />
         <Route path='/register' element = {<Register />} />
         {/* <Route path='/login' element = {<Login />} /> */}
         <Route path='/login' element={<Login setUserInfo={setUserInfo}/>} />
         <Route path='/admin-dashboard' element={<AdminDashboard />} />
         <Route path='/profile' element = {<Profile />} />
-        <Route path='/searchbar' element = {<SearchBar allTripsData = {allTripsData} />} />
-      </Routes>
+       </Routes>
     </>
   )
 }

@@ -6,7 +6,7 @@ export default function SearchTrip(props){
 
     return(
         <div>
-           <h2 id="searchTrip">Trip:</h2>
+           <h4 id="searchTrip">Trip:</h4>
            {props.trip && props.trip.location ? 
            
            
