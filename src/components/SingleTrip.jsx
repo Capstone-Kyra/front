@@ -24,7 +24,11 @@ export default function SingleTrip (props){
            <p> {filteredTrip.description}</p> 
            <p> {filteredTrip.type}</p> 
            </> : null }
-           <button onClick={() => navigate('/')}> Back </button>
+
+            
+
+           {/* add singlereview view here */}
+           <button onClick={() => navigate('/trips')}> Back </button>
 
            
 </div>

@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 
-export default function NewTrip() {
+
+export default function NewTrip(props) {
     const [type, setType] = useState('');
     const [description, setDescription] = useState('');
     const [location, setLocation] = useState('');
@@ -35,7 +36,9 @@ export default function NewTrip() {
         })
      console.log(response)
         const translatedData = await response.json();
+        props.setAllTripsData([...props.allTripsData, translatedData])
         console.log(translatedData)
+        navigate('/trips');
         } catch(error) {
             console.log(error);
         }
@@ -44,7 +47,7 @@ export default function NewTrip() {
 <div>
 
 <h2>Make a new post</h2>
-<form onSubmit={sendPostRequest}>
+<form onSubmit={sendPostRequest} >
     <label htmlFor="post-title">Trip Type:
         <input
         type="text"
@@ -66,8 +69,9 @@ export default function NewTrip() {
     onChange = {(event) => {
         setLocation(event.target.value)}}/></label>
    
-    <button type="submit">Create new trip</button>
+    <button type="submit"  >Create new trip</button>
     <Link to= '/profile'>back to profile</Link>
+     {/* <Link to ={`/trips`}><button type='submit'>Add listing</button></Link>  */}
  
 </form>
         </div>

@@ -1,35 +1,30 @@
 import { useEffect, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
 
 
-export default function FetchReviews({setSelectedReviewId, selectedReviewId}){
-    const[TheReviews, setTheReviews] = useState([]);
-    const navigate = useNavigate()
-    function reviewInfo(reviewId) {
-        navigate(`/reviews/${reviewId}`)
-    }
+export default function FetchReviews({setReviewId, ReviewId}){
+    const[TheseReviews, setTheseReviews] = useState([]);
     
     useEffect(() =>{
-        async function fetchTheReviews(){
+        async function fetchReviews(){
             try{
                 const response = await fetch(`http://localhost:3000/api/reviews`);
                 const data = await response.json();
-                setTheReviews(data);
+                setTheseReviews(data);
                 
             } catch(error){
                 console.error(error);
             }
         }
-        fetchTheReviews();
+        fetchReviews();
     }, []);
 
     return(
         <div><h2>Reviews</h2>
-            {TheReviews.map((review)=>(
+            {TheseReviews.map((review)=>(
                 <div key={review.reviewId}>
+                    <p>Location: {review.tripId}</p>
                     <p>Description: {review.description}</p>
                     <p>Rating: {review.rating}</p>
-                    <button onClick={() => reviewInfo(review.reviewId)}>Details</button>
                 </div>
             ))}
         </div>
