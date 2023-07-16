@@ -13,6 +13,8 @@ import jwtDecode from 'jwt-decode';
 import Homepage from './components/HomePage';
 import NewTrip from './components/NewTrip';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
+import FetchReviews from './components/Reviews/FetchReviews';
+import CreateReview from './components/Reviews/CreateReview';
 
 function App() {
   const [allTripsData, setAllTripsData] = useState([]);
@@ -56,11 +58,12 @@ console.log(allTripsData);
       <nav>
       <Link to='/'>Home </Link>
       {/* <Link to='/searchbar'>Search </Link> */}
-      <Link to ='/newTrip'>Create a new trip </Link>
-      <Link to = '/trips'>See a list of Trips</Link>
+      <Link to ='/newTrip'>Create new trip </Link>
+      <Link to = '/trips'>See a list of all Trips</Link>
+      <Link to = '/reviews/fetchReviews'>Reviews</Link>
         
         {
-          userInfo ? "" : <Link to="/login">Login</Link>
+          userInfo ? "" : <Link to="/login">Login/Register</Link>
         }
 
         {
@@ -70,6 +73,8 @@ console.log(allTripsData);
         {
           userInfo && !userInfo.admin ? <Link to="/profile"> Profile</Link> : ""
         }
+
+
       {/* <NavBar />  */}
       </nav>
       <Routes>
@@ -82,6 +87,8 @@ console.log(allTripsData);
         <Route path='/login' element={<Login setUserInfo={setUserInfo}/>} />
         <Route path='/admin-dashboard' element={<AdminDashboard />} />
         <Route path='/profile' element = {<Profile />} />
+        <Route path='/reviews/fetchReviews' element ={<FetchReviews />} />
+        <Route path= 'reviews/createReview' element ={<CreateReview />} />
        </Routes>
     </>
   )
