@@ -3,11 +3,11 @@ import {BASE_URL} from "../api-adapters";
 
 
 export default function DeleteReview(props){
-
     const TOKEN = localStorage.getItem('token')
+
     async function delAReview(){
         try{
-            const response = await fetch(`${BASE_URL}/api/reviews${props.reviewId}`,{
+            const response = await fetch(`${BASE_URL}/api/reviews/${props.reviewId}`,{
             method: "DELETE",
             headers:{
                 'Content-Type': 'application/json',
@@ -23,8 +23,8 @@ export default function DeleteReview(props){
     }
 
     return(
-        <button id="delete-review-button" type="button" onClick={delAReview}>
-            Delete Review
+        <button id="delete-button" type="button" onClick={delAReview}>
+            Delete
         </button>
     );
 }
