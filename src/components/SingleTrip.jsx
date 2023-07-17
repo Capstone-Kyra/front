@@ -58,7 +58,7 @@ export default function SingleTrip (props){
                         
                     </div>
                 )
-            }) : <p>Loading trips</p>
+            }) : <p>No reviews here!</p>
             }
             
 
