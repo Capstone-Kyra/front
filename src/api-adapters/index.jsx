@@ -13,6 +13,8 @@ export const getAllTrips = async() => {
     }
 }   
 
+
+
 export async function registerUser(username, password, email){
     try{
         // console.log(1)
