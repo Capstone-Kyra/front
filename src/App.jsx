@@ -81,7 +81,7 @@ console.log(allTripsData);
       <nav>
       <Link to='/'>Home </Link>
       {/* <Link to='/searchbar'>Search </Link> */}
-      <Link to ='/newTrip'>Create new trip </Link>
+      
       <Link to = '/trips'>See a list of all Trips</Link>
       <Link to = '/reviews/fetchReviews'>Reviews</Link>
         
@@ -100,6 +100,11 @@ console.log(allTripsData);
 {
           userInfo && userInfo.admin ? <Link to="/users"> View All Users </Link> : ""
         }
+
+{
+          userInfo && userInfo.admin ? <Link to ='/newTrip'>Create new trip </Link> : ""
+        }
+
 
 
 
