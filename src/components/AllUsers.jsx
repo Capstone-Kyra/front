@@ -9,12 +9,15 @@ export default function AllUsers(props) {
     console.log(props);  
     return(
         <div>
-            <h3>Click the link above to create your own trip listing!</h3>
+            
             {props.user && props.user.length ? props.user.map((singleUser) => {
                 
                 return(
                     <div key={singleUser.UserId}>
-                        <h4>Location: {singleUser.username}</h4>
+                        <h4>Username: {singleUser.username}</h4>
+                        <h4>Email: {singleUser.email}</h4>
+                        {/* convert boolean value */}
+                        <h4>Role: {singleUser.is_Admin}</h4>
                         
                     </div>
                 )
