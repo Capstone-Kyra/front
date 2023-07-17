@@ -15,6 +15,7 @@ import NewTrip from './components/NewTrip';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import FetchReviews from './components/Reviews/FetchReviews';
 import CreateReview from './components/Reviews/CreateReview';
+import FetchComments from './components/Comments/FetchComments';
 
 function App() {
   const [allTripsData, setAllTripsData] = useState([]);
@@ -89,6 +90,7 @@ console.log(allTripsData);
         <Route path='/profile' element = {<Profile />} />
         <Route path='/reviews/fetchReviews' element ={<FetchReviews />} />
         <Route path= 'reviews/createReview' element ={<CreateReview />} />
+        <Route path='/comments' element = {<FetchComments />} />
        </Routes>
     </>
   )
