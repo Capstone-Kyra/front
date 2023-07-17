@@ -16,10 +16,12 @@ import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import FetchReviews from './components/Reviews/FetchReviews';
 import CreateReview from './components/Reviews/CreateReview';
 import FetchComments from './components/Comments/FetchComments';
+import AllUsers from './components/AllUsers';
 
 function App() {
   const [allTripsData, setAllTripsData] = useState([]);
   const [userInfo, setUserInfo] = useState(undefined);
+  const [user, setUser] = useState([]);
 
   useEffect (() => {
     async function fetchAllTrips() {
@@ -52,6 +54,26 @@ console.log(allTripsData);
       })
     }
   }, [])
+
+  
+
+    useEffect (() => {
+        async function fetchAllUsers() {
+          
+          try {
+            const BASE_URL = `http://localhost:3000`;
+            const response = await fetch(`${BASE_URL}/api/users`);
+            
+            const translatedData = await response.json();
+            console.log(translatedData)
+            
+            setUser(translatedData)
+          } catch(error) {
+            console.log(error);
+          }
+        }
+         fetchAllUsers();
+      }, [])
   
   return (
     <>
@@ -75,6 +97,11 @@ console.log(allTripsData);
           userInfo && !userInfo.admin ? <Link to="/profile"> Profile</Link> : ""
         }
 
+{
+          userInfo && userInfo.admin ? <Link to="/users"> View All Users </Link> : ""
+        }
+
+
 
       {/* <NavBar />  */}
       </nav>
@@ -91,6 +118,7 @@ console.log(allTripsData);
         <Route path='/reviews/fetchReviews' element ={<FetchReviews />} />
         <Route path= 'reviews/createReview' element ={<CreateReview />} />
         <Route path='/comments' element = {<FetchComments />} />
+        <Route path='/users' element = {<AllUsers user={user}/>} />
        </Routes>
     </>
   )
