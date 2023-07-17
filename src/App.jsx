@@ -22,6 +22,7 @@ function App() {
   const [allTripsData, setAllTripsData] = useState([]);
   const [userInfo, setUserInfo] = useState(undefined);
   const [user, setUser] = useState([]);
+ 
 
   useEffect (() => {
     async function fetchAllTrips() {
@@ -78,12 +79,15 @@ console.log(allTripsData);
   return (
     <>
       <h1>Adventure Time</h1>
+      {
+          userInfo && userInfo.admin ?  <h2>Welcome to the Admin View. Toggle through the different functions to add, create or reviews/comments.</h2> : ""
+        }
       <nav>
       <Link to='/'>Home </Link>
       {/* <Link to='/searchbar'>Search </Link> */}
       
-      <Link to = '/trips'>See a list of all Trips</Link>
-      <Link to = '/reviews/fetchReviews'>Reviews</Link>
+      <Link to = '/trips'>See a list of all Trips </Link>
+      <Link to = '/reviews/fetchReviews'>Reviews </Link>
         
         {
           userInfo ? "" : <Link to="/login">Login/Register</Link>
@@ -111,7 +115,7 @@ console.log(allTripsData);
       {/* <NavBar />  */}
       </nav>
       <Routes>
-        <Route path='/' element = {<Homepage allTripsData={allTripsData}/>} />
+        <Route path='/' element = {<Homepage allTripsData={allTripsData} userInfo={userInfo}/>} />
         <Route path='/trips' element = {<AllTrips allTripsData={allTripsData} />} />
         <Route path='/trips/:id' element = {<SingleTrip allTripsData={allTripsData} />} />
         <Route path='/newTrip' element = { <NewTrip allTripsData = {allTripsData} setAllTripsData = {setAllTripsData}/>} />
