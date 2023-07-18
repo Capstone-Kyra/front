@@ -59,6 +59,7 @@ export default function SingleTrip(props) {
       ) : (
         <p>No reviews here!</p>
       )}
+      {/* <p>Hello</p> */}
 
       {/* add singlereview view here */}
 
