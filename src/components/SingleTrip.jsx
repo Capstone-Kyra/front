@@ -55,6 +55,7 @@ export default function SingleTrip (props){
                         <p>Review: {singleReview.text}</p>
                         <p>Rating: {singleReview.rating}</p>
                         <p>Comments: {singleReview.text}</p>
+                        <img src={singleReview.picture} alt="trip shown"/>
                         
                     </div>
                 )
