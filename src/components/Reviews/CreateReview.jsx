@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export default function NewReview({ trip, setNewReviews }) {
+export default function NewReview({ id , setNewReviews }) {
     const [description, setDescription] = useState('');
     const [rating, setRating] = useState('');
     const [tripId, setTripId] = useState('');
@@ -21,7 +21,7 @@ export default function NewReview({ trip, setNewReviews }) {
                     description: description,
                     rating: rating,
                     userId: localStorage.getItem('userId'),
-                    tripId: trip.tripId
+                    tripId: id
                 })
             })
             // navigate('/reviews/fetchReviews');

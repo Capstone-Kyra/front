@@ -55,8 +55,8 @@ const AdminDashboard =() =>{
     return(
 
         <>
-            <h2>Welcome to the Admin Dashboard!</h2>
-            <form onSubmit={sendPostRequest}>
+            <h2>Welcome to the Admin Dashboard! Use the NavBar to determine your next step!</h2>
+            {/* <form onSubmit={sendPostRequest}>
                     <input type= "text" placeholder="Enter new trip type" value={newTripType} onChange={(event) => setNewTripType(event.target.value)}/>
                     <input type= "text" placeholder="Enter new location" value={newTripLocation} onChange={(event) => setNewTripLocation(event.target.value)}/>
                     <input type= "text" placeholder="Enter new description" value={newTripDescription} onChange={(event) => setNewTripDescription(event.target.value)}/>
@@ -67,7 +67,7 @@ const AdminDashboard =() =>{
             </form>
             {
                 adminInfo && adminInfo.admin ? {sendPostRequest} : ""
-            }
+            } */}
         </>
     )
 }

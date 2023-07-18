@@ -7,6 +7,7 @@ export default function NewTrip(props) {
     const [type, setType] = useState('');
     const [description, setDescription] = useState('');
     const [location, setLocation] = useState('');
+    const [picture, setPicture] = useState("");
     const TOKEN = localStorage.getItem('token');
     const navigate = useNavigate();
 
@@ -68,6 +69,12 @@ export default function NewTrip(props) {
     value={location}
     onChange = {(event) => {
         setLocation(event.target.value)}}/></label>
+        <label htmlFor="post-pic">Post Picture:
+    <input
+    type="text"
+    value={picture}
+    onChange = {(event) => {
+        setPicture(event.target.value)}}/></label>
    
     <button type="submit"  >Create new trip</button>
     <Link to= '/profile'>back to profile</Link>

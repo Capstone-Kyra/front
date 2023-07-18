@@ -88,7 +88,7 @@ console.log(allTripsData);
       {/* <Link to='/searchbar'>Search </Link> */}
       
       <Link to = '/trips'>See a list of all Trips </Link>
-      <Link to = '/reviews/fetchReviews'>Reviews </Link>
+      <Link to = '/reviews/createReview'> Leave a Review </Link>
         
         {
           userInfo ? "" : <Link to="/login">Login/Register</Link>
@@ -109,8 +109,15 @@ console.log(allTripsData);
 {
           userInfo && userInfo.admin ? <Link to ='/newTrip'>Create new trip </Link> : ""
         }
-        {userInfo && userInfo.admin? (<button onClick={()=>{isLoggedIn}}>Logout </button>): "" }
-        {userInfo && !userInfo.admin? (<button onClick={()=>{isLoggedIn}}>Logout </button>): "" }
+        {userInfo ? (<button onClick={()=>{
+           setIsLoggedIn(false)
+           localStorage.removeItem('token')
+           localStorage.removeItem('user')
+           setUserInfo(undefined)
+
+
+        }}>Logout </button>): "" }
+        
 
 
 
@@ -120,7 +127,7 @@ console.log(allTripsData);
       <Routes>
         <Route path='/' element = {<Homepage allTripsData={allTripsData} userInfo={userInfo}/>} />
         <Route path='/trips' element = {<AllTrips allTripsData={allTripsData} />} />
-        <Route path='/trips/:id' element = {<SingleTrip allTripsData={allTripsData} />} />
+        <Route path='/trips/:id' element = {<SingleTrip allTripsData={allTripsData} userInfo = {userInfo} />} />
         <Route path='/newTrip' element = { <NewTrip allTripsData = {allTripsData} setAllTripsData = {setAllTripsData}/>} />
         <Route path='/register' element = {<Register />} />
         {/* <Route path='/login' element = {<Login />} /> */}
