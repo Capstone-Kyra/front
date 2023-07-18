@@ -22,6 +22,7 @@ function App() {
   const [allTripsData, setAllTripsData] = useState([]);
   const [userInfo, setUserInfo] = useState(undefined);
   const [user, setUser] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
  
 
   useEffect (() => {
@@ -113,6 +114,8 @@ console.log(allTripsData);
 {
           userInfo && userInfo.admin ? <Link to ='/newTrip'>Create new trip </Link> : ""
         }
+        {userInfo && userInfo.admin? (<button onClick={()=>{isLoggedIn}}>Logout </button>): "" }
+        {userInfo && !userInfo.admin? (<button onClick={()=>{isLoggedIn}}>Logout </button>): "" }
 
          {
           userInfo && !userInfo.admin ? <Link to='/reviews/fetchReviews'> View all reviews</Link> : ""
