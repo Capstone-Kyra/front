@@ -82,12 +82,17 @@ console.log(allTripsData);
       {
           userInfo && userInfo.admin ?  <h2>Welcome to the Admin View. Toggle through the different functions to add, create or reviews/comments.</h2> : ""
         }
+
+      {
+          userInfo && !userInfo.admin ? <h2>Welcome to the Profile View. Create your own reviews and comments! </h2> : ""
+       }
+
       <nav>
       <Link to='/'>Home </Link>
       {/* <Link to='/searchbar'>Search </Link> */}
       
       <Link to = '/trips'>See a list of all Trips </Link>
-      <Link to = '/reviews/fetchReviews'>Reviews </Link>
+      {/* <Link to = '/reviews/fetchReviews'>Reviews </Link> */}
         
         {
           userInfo ? "" : <Link to="/login">Login/Register</Link>
@@ -107,6 +112,10 @@ console.log(allTripsData);
 
 {
           userInfo && userInfo.admin ? <Link to ='/newTrip'>Create new trip </Link> : ""
+        }
+
+         {
+          userInfo && !userInfo.admin ? <Link to='/reviews/fetchReviews'> View all reviews</Link> : ""
         }
 
 

@@ -29,6 +29,7 @@ export default function SingleTrip (props){
                     return singleTrip
                 }
             })
+            console.log(filteredTrip)
             if(filteredTrip.length){
                 
                 setReview(filteredTrip)
@@ -41,6 +42,7 @@ export default function SingleTrip (props){
          fetchAllConnectedTrips();
       }, [])
     // console.log(filteredTrip)
+    console.log(review)
     return(
         <div>
          
@@ -55,14 +57,20 @@ export default function SingleTrip (props){
                         <p>Review: {singleReview.text}</p>
                         <p>Rating: {singleReview.rating}</p>
                         <p>Comments: {singleReview.text}</p>
-                        
                     </div>
                 )
             }) : <p>No reviews here!</p>
             }
             
 
-           {/* add singlereview view here */}
+             {/* add singlereview view here */}
+
+             {/* <div className="logged-in">
+              < isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} ></div>
+
+             <Link to='/reviews/createReview'><button>Create a Review</button></Link>  */}
+            
+         
            <button onClick={() => navigate('/trips')}> Back </button>
 
            
