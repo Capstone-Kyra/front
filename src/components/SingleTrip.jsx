@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useNavigate , Link} from "react-router-dom";
 import { useState, useEffect } from "react";
+import NewReview from "./Reviews/CreateReview";
 
 
 export default function SingleTrip (props){
@@ -62,7 +63,7 @@ export default function SingleTrip (props){
             }) : <p>No reviews here!</p>
             }
             
-
+           {props.userInfo  ?  <NewReview id = {id} /> : ""}
            {/* add singlereview view here */}
            <button onClick={() => navigate('/trips')}> Back </button>
 
