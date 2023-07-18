@@ -17,7 +17,7 @@ export default function AllUsers(props) {
                         <h4>Username: {singleUser.username}</h4>
                         <h4>Email: {singleUser.email}</h4>
                         {/* convert boolean value */}
-                        <h4>Role: {singleUser.is_Admin}</h4>
+                        <h4>Admin?: {`${singleUser.is_Admin}`}</h4>
                         
                     </div>
                 )
