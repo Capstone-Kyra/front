@@ -1,11 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export default function NewReview({ id , setNewReviews }) {
+export default function NewReview({ id , setNewReviews, userInfo }) {
     const [description, setDescription] = useState('');
     const [rating, setRating] = useState('');
-    const [tripId, setTripId] = useState('');
-    // const navigate = useNavigate();
+    const [location, setLocation] = useState('');
+    const navigate = useNavigate();
 
     async function createReview(event){
         event.preventDefault()
@@ -18,13 +18,14 @@ export default function NewReview({ id , setNewReviews }) {
                     'Authorization': `Bearer ${TOKEN}`
                 },
                 body: JSON.stringify({
+                    location: location,
                     description: description,
                     rating: rating,
-                    userId: localStorage.getItem('userId'),
+                    userId: userInfo.userId,
                     tripId: id
                 })
             })
-            // navigate('/reviews/fetchReviews');
+            navigate('/reviews/fetchReviews');
             const result = await response.json()
             return result
         }   catch (error){
@@ -37,12 +38,11 @@ export default function NewReview({ id , setNewReviews }) {
             <h2>Create a Review</h2>
             <form onSubmit={createReview}>
             <label>
-                {/* tripId needs to be replaced with location */}
                     Location:
                     <input type="text"
-                    value={tripId}
+                    value={location}
                     placeholder="Trip location.."
-                    onChange={(event)=> setTripId(event.target.value)}/> 
+                    onChange={(event)=> setLocation(event.target.value)}/> 
                 </label>
                 <label>
                     Description:

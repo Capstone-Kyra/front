@@ -22,7 +22,7 @@ export default function FetchReviews({setReviewId, ReviewId}){
         <div><h2>Reviews</h2>
             {TheseReviews.map((review)=>(
                 <div key={review.reviewId}>
-                    <p>Location: {review.tripId}</p>
+                    <p>Location: {review.location}</p>
                     <p>Description: {review.description}</p>
                     <p>Rating: {review.rating}</p>
                 </div>

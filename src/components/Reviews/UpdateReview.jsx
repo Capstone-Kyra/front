@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import {BASE_URL} from "../api-adapters";
+// import {BASE_URL} from "../api-adapters";
 import {useParams, useNavigate} from "react-router-dom";
+const BASE_URL = `http://localhost:3000`;
 
 export default function UpdateReview(){
     const TOKEN = localStorage.getItem('token')
@@ -8,6 +9,7 @@ export default function UpdateReview(){
 
     const [description, setDescription] = useState('');
     const [rating, setRating] = useState('');
+    const [location, setLocation] = useState('');
     console.log(rating)
 
     async function updateAReview(event){
@@ -20,6 +22,7 @@ export default function UpdateReview(){
                     'Authorization': `Bearer ${TOKEN}`
                 },
                 body: JSON.stringify({
+                    location: location,
                     description: description,
                     rating: rating,
                 })
@@ -34,6 +37,12 @@ export default function UpdateReview(){
         <div>
             <h2>Update a Review</h2>
             <form onSubmit={updateAReview}>
+            <label>
+                    Location:
+                    <input type="text"
+                    value={location}
+                    onChange={(event)=> setLocation(event.target.value)}/></label> 
+
                 <label>
                     Description:
                     <input type="text"
@@ -47,7 +56,7 @@ export default function UpdateReview(){
                 setRating(event.target.value)}/></label>
 
             <button id="edit-review-button" type="submit">
-                Edit Review
+                Submit
             </button>
                 </form>
 

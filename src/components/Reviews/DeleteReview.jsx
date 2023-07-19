@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {BASE_URL} from "../api-adapters";
+const BASE_URL = `http://localhost:3000`;
 
 
 export default function DeleteReview(props){
