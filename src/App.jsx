@@ -17,6 +17,9 @@ import FetchReviews from './components/Reviews/FetchReviews';
 import CreateReview from './components/Reviews/CreateReview';
 import FetchComments from './components/Comments/FetchComments';
 import AllUsers from './components/AllUsers';
+import UpdateReview from './components/Reviews/UpdateReview';
+import FetchOwnReviews from './components/Reviews/FetchOwnReviews';
+import DeleteReview from './components/Reviews/DeleteReview';
 
 function App() {
   const [allTripsData, setAllTripsData] = useState([]);
@@ -44,16 +47,30 @@ function App() {
 console.log(allTripsData);
 
   useEffect(() => {
+    async function getUserInfo(username){
+try {
+  const response = await fetch(`http://localhost:3000/api/users/userInfo/${username}`)
+  const data = await response.json()
+  console.log(username)
+   console.log(data)
+   setUserInfo({
+        username: data.username,
+        admin: data.is_Admin,
+        userId: data.userId
+      })
+ 
+} catch (error) {
+  console.log(error)
+}
+    }
     const token = localStorage.getItem("token")
     console.log(token, typeof token)
     if (localStorage.getItem("token")) {
       console.log('hello')
       let decodedToken = jwtDecode(localStorage.getItem("token"));
       console.log('decoded token', decodedToken)
-      setUserInfo({
-        username: decodedToken.username,
-        admin: decodedToken.is_Admin
-      })
+      getUserInfo(decodedToken.username)
+     
     }
   }, [])
 
@@ -76,7 +93,7 @@ console.log(allTripsData);
         }
          fetchAllUsers();
       }, [])
-  
+  console.log(userInfo)
   return (
     <>
       <h1>Adventure Time</h1>
@@ -94,6 +111,7 @@ console.log(allTripsData);
       
       <Link to = '/trips'>See a list of all Trips </Link>
       {/* <Link to = '/reviews/fetchReviews'>Reviews </Link> */}
+      {/* <Link to = '/reviews/createReview'> Leave a Review </Link> */}
         
         {
           userInfo ? "" : <Link to="/login">Login/Register</Link>
@@ -114,12 +132,22 @@ console.log(allTripsData);
 {
           userInfo && userInfo.admin ? <Link to ='/newTrip'>Create new trip </Link> : ""
         }
-        {userInfo && userInfo.admin? (<button onClick={()=>{isLoggedIn}}>Logout </button>): "" }
-        {userInfo && !userInfo.admin? (<button onClick={()=>{isLoggedIn}}>Logout </button>): "" }
-
-         {
-          userInfo && !userInfo.admin ? <Link to='/reviews/fetchReviews'> View all reviews</Link> : ""
+ {
+          userInfo && !userInfo.admin ? <Link to={`/reviews/fetchOwnReviews/${userInfo.userId}`}> My Reviews</Link> : ""
         }
+        {
+          userInfo && !userInfo.admin ? <Link to='/reviews/fetchReviews'> See all Reviews</Link> : ""
+        }
+
+        {userInfo ? (<button onClick={()=>{
+           setIsLoggedIn(false)
+           localStorage.removeItem('token')
+           localStorage.removeItem('user')
+           setUserInfo(undefined)
+
+
+        }}>Logout </button>): "" }
+        
 
 
 
@@ -129,7 +157,7 @@ console.log(allTripsData);
       <Routes>
         <Route path='/' element = {<Homepage allTripsData={allTripsData} userInfo={userInfo}/>} />
         <Route path='/trips' element = {<AllTrips allTripsData={allTripsData} />} />
-        <Route path='/trips/:id' element = {<SingleTrip allTripsData={allTripsData} />} />
+        <Route path='/trips/:id' element = {<SingleTrip allTripsData={allTripsData} userInfo = {userInfo} />} />
         <Route path='/newTrip' element = { <NewTrip allTripsData = {allTripsData} setAllTripsData = {setAllTripsData}/>} />
         <Route path='/register' element = {<Register />} />
         {/* <Route path='/login' element = {<Login />} /> */}
@@ -137,7 +165,10 @@ console.log(allTripsData);
         <Route path='/admin-dashboard' element={<AdminDashboard />} />
         <Route path='/profile' element = {<Profile />} />
         <Route path='/reviews/fetchReviews' element ={<FetchReviews />} />
+        <Route path='/reviews/updateReview' element ={<UpdateReview />} />
         <Route path= 'reviews/createReview' element ={<CreateReview />} />
+        <Route path= 'reviews/fetchOwnReviews/:id' element ={<FetchOwnReviews userInfo = {userInfo} />} />
+        <Route path= 'reviews/deleteReview' element ={<DeleteReview />} />
         <Route path='/comments' element = {<FetchComments />} />
         <Route path='/users' element = {<AllUsers user={user}/>} />
        </Routes>
