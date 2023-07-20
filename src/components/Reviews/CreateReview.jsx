@@ -6,7 +6,7 @@ export default function NewReview({ id , setNewReviews, userInfo }) {
     const [rating, setRating] = useState('');
     const [location, setLocation] = useState('');
     const navigate = useNavigate();
-
+    console.log(userInfo, "userinfo should pop out here")
     async function createReview(event){
         event.preventDefault()
         try{

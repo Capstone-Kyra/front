@@ -15,18 +15,19 @@ import NewTrip from './components/NewTrip';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 import FetchReviews from './components/Reviews/FetchReviews';
 import CreateReview from './components/Reviews/CreateReview';
+import CreateComment from './components/Comments/CreateComment';
 import FetchComments from './components/Comments/FetchComments';
 import AllUsers from './components/AllUsers';
 import UpdateReview from './components/Reviews/UpdateReview';
 import FetchOwnReviews from './components/Reviews/FetchOwnReviews';
-import DeleteReview from './components/Reviews/DeleteReview';
+// import DeleteReview from './components/Reviews/DeleteReview';
 
 function App() {
   const [allTripsData, setAllTripsData] = useState([]);
   const [userInfo, setUserInfo] = useState(undefined);
   const [user, setUser] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
- 
+ const [allReviewsData, setAllReviewsData]= useState ([]);
 
   useEffect (() => {
     async function fetchAllTrips() {
@@ -45,6 +46,24 @@ function App() {
      fetchAllTrips();
   }, [])
 console.log(allTripsData);
+
+useEffect (() => {
+  async function fetchAllReviews() {
+    console.log('running fetch alltrips function')
+    try {
+      const BASE_URL = `http://localhost:3000`;
+      const response = await fetch(`${BASE_URL}/api/reviews`);
+      // console.log('response' + response);
+      const translatedData = await response.json();
+      // console.log(translatedData);
+      setAllReviewsData(translatedData)
+    } catch(error) {
+      console.log(error);
+    }
+  }
+   fetchAllReviews();
+}, [])
+console.log(allReviewsData);
 
   useEffect(() => {
     async function getUserInfo(username){
@@ -96,7 +115,6 @@ try {
   console.log(userInfo)
   return (
     <>
-      <h1>Adventure Time</h1>
       {
           userInfo && userInfo.admin ?  <h2>Welcome to the Admin View. Toggle through the different functions to add, create or reviews/comments.</h2> : ""
         }
@@ -106,10 +124,11 @@ try {
        }
 
       <nav>
+        <div className="navBar">
       <Link to='/'>Home </Link>
       {/* <Link to='/searchbar'>Search </Link> */}
       
-      <Link to = '/trips'>See a list of all Trips </Link>
+      <Link to = '/trips'>View All Trips </Link>
       {/* <Link to = '/reviews/fetchReviews'>Reviews </Link> */}
       {/* <Link to = '/reviews/createReview'> Leave a Review </Link> */}
         
@@ -130,14 +149,21 @@ try {
         }
 
 {
-          userInfo && userInfo.admin ? <Link to ='/newTrip'>Create new trip </Link> : ""
+          userInfo && userInfo.admin ? <Link to ='/newTrip'>Create New Trip </Link> : ""
         }
  {
           userInfo && !userInfo.admin ? <Link to={`/reviews/fetchOwnReviews/${userInfo.userId}`}> My Reviews</Link> : ""
         }
         {
-          userInfo && !userInfo.admin ? <Link to='/reviews/fetchReviews'> See all Reviews</Link> : ""
+          userInfo && !userInfo.admin ? <Link to='/reviews/fetchReviews'> See All Reviews</Link> : ""
         }
+        {
+          userInfo && userInfo.admin ? <Link to='/reviews/fetchReviews'> See All Reviews</Link> : ""
+        }
+        {
+          userInfo && !userInfo.admin ? <Link to='/comments'> See All Comments</Link> : ""
+        }
+
 
         {userInfo ? (<button onClick={()=>{
            setIsLoggedIn(false)
@@ -148,7 +174,7 @@ try {
 
         }}>Logout </button>): "" }
         
-
+        </div>
 
 
 
@@ -166,10 +192,12 @@ try {
         <Route path='/profile' element = {<Profile />} />
         <Route path='/reviews/fetchReviews' element ={<FetchReviews />} />
         <Route path='/reviews/updateReview' element ={<UpdateReview />} />
-        <Route path= 'reviews/createReview' element ={<CreateReview />} />
-        <Route path= 'reviews/fetchOwnReviews/:id' element ={<FetchOwnReviews userInfo = {userInfo} />} />
-        <Route path= 'reviews/deleteReview' element ={<DeleteReview />} />
+        <Route path='/searchbar' element={<SearchBar allReviewsData={allReviewsData}/>} />
+        <Route path= '/reviews/createReview' element ={<CreateReview userInfo={userInfo}/>} />
+        <Route path= '/reviews/fetchOwnReviews/:id' element ={<FetchOwnReviews userInfo = {userInfo} />} />
+        {/* <Route path= 'reviews/deleteReview' element ={<DeleteReview />} /> */}
         <Route path='/comments' element = {<FetchComments />} />
+        <Route path= '/reviews/createComment' element ={<CreateComment userInfo={userInfo}/>} />
         <Route path='/users' element = {<AllUsers user={user}/>} />
        </Routes>
     </>

@@ -6,8 +6,7 @@ import CreateReview from "./Reviews/CreateReview"
 
 export default function Profile(){
     return(
-        <div>
-        <h1>Your profile!</h1>
+        <div className="profileview">
         {/* <Link to= '/NewTrip'>Create new trip</Link> */}
         <Link to = '/reviews/createReview'>Create A Review</Link>
         <br/>

@@ -30,6 +30,9 @@ export default function FetchComments(){
                     
                 </div>
             ))}
+             {/* <button id="delete-button" type="button" onClick={DeleteReview}>
+            Delete
+            </button> */}
         </div>
     )
             }
