@@ -6,13 +6,13 @@ import { useParams } from "react-router-dom"
 import DeleteReview from "./DeleteReview";
 
 export default function FetchOwnReviews({props}){
-    const[TheReviews, setTheReviews] = useState([]);
+    const[theReviews, setTheReviews] = useState([]);
     const { id } = useParams();
     
     useEffect(() =>{
         async function fetchOwnReviews(){
             try{
-                const response = await fetch(`http://localhost:3000/api/reviews/users/${id}`);
+                const response = await fetch(`http://localhost:3000/api/reviews/`);
                 const data = await response.json();
                 console.log(data)
                 setTheReviews(data);
@@ -38,16 +38,16 @@ export default function FetchOwnReviews({props}){
 
     return(
         <div><h2>Reviews</h2>
-            {TheReviews.length ? TheReviews.map((review)=>(
+            {theReviews.length ? theReviews.map((review)=>(
                 <div key={review.reviewId}>
                     <p>Location: {review.location}</p>
                     <p>Description: {review.description}</p>
                     <p>Rating: {review.rating}</p>
                 </div>
             )):""}
-             <button id="delete-button" type="button" onClick={DeleteReview}>
+             {/* <button id="delete-button" type="button" onClick={DeleteReview}>
             Delete
-            </button>
+            </button> */}
 
 
         </div>

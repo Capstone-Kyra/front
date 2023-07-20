@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import NewReview from "./Reviews/CreateReview";
 // import DeleteReview from "./Reviews/DeleteReview";
 import UpdateReview from "./Reviews/UpdateReview";
+import NewComment from "./Comments/CreateComment";
 
 
 export default function SingleTrip (props){
@@ -17,7 +18,7 @@ export default function SingleTrip (props){
           console.log('running fetch allconnectedtrips function')
           try {
             const BASE_URL = `http://localhost:3000`;
-            const response = await fetch(`${BASE_URL}/api/reviews/${id}`);
+            const response = await fetch(`${BASE_URL}/api/reviews/trips/${id}`);
             
              
             const translatedData = await response.json();
@@ -66,6 +67,7 @@ export default function SingleTrip (props){
             }
             
            {props.userInfo  ?  <NewReview id = {id} userInfo = {props.userInfo}/> : ""}
+           
            {/* {props.userInfo  ?  <UpdateReview id = {id} /> : ""} */}
 
            {/* add singlereview view here */}

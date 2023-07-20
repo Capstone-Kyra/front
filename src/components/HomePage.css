@@ -1,0 +1,33 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+/* Base */
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.Homepage-title{
+    font-size: 1.5em;
+    color: black;
+}
+
+
+.homedata{
+    display: flex;
+    text-align: center;
+    color: black;
+    justify-content: center;
+    
+}
+
+#searchbar{
+    display: flex;
+    text-align: center;
+    color: black;
+
+}

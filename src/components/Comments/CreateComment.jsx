@@ -3,6 +3,8 @@ import { useState } from "react";
 
 export default function NewComment({ trip, setNewReviews }) {
     const [text, setText] = useState('');
+    const [comment, setComment]= useState ([]);
+    const { id } = useParams();
     
     const [userId, setUserId] = useState('');
     // const navigate = useNavigate();
@@ -19,11 +21,13 @@ export default function NewComment({ trip, setNewReviews }) {
                 },
                 body: JSON.stringify({
                     text : text,
-                    userId: localStorage.getItem('userId')
+                    username: username,
+                    userId: userInfo.userId,
+                    reviewId: id
                     
                 })
             })
-            // navigate('/reviews/fetchReviews');
+            navigate('/comments/fetchComments');
             const result = await response.json()
             return result
         }   catch (error){
@@ -39,14 +43,16 @@ export default function NewComment({ trip, setNewReviews }) {
                 {/* tripId needs to be replaced with location */}
                     Text:
                     <input type="text"
-                    value={tripId}
+                    value={text}
                     placeholder="Leave a comment"
-                   /> 
+                    onChange={(event)=> setText(event.target.value)}/>  
                 </label>
                 
 
-                <button type= "submit">submit</button>
+                <button type= "submit">create comment</button>
                 </form>
+
+                {props.userInfo  ?  <NewComment id = {id} userInfo = {props.userInfo}/> : ""}
 
         </div>
     )}
